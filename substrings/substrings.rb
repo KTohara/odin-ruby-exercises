@@ -1,5 +1,11 @@
+# Implement a method #substrings that takes a word as the first argument and then an array of valid substrings (your dictionary) as the second argument. It should return a hash listing each substring (case insensitive) that was found in the original string and how many times it was found.
+
 def substrings(str, arr)
+  # create a new hash, with default value of 0
   subs = Hash.new(0)
+
+  # iterate through the string and find all substrings
+  # if substring key is included within the dictionary array, include it in the subs hash, and increase it's count by 1
   (0...str.length).each do |i|
     (i...str.length).each do |j|
       key = str[i..j].downcase

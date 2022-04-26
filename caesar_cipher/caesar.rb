@@ -1,3 +1,5 @@
+# Implement a caesar cipher that takes in a string and the shift factor and then outputs the modified string:
+
 def caesar_cipher(str, shift = 0) # set default value of shift to zero, if no number is entered
   # set abc to an array from a - z
   abc = ("a".."z").to_a
