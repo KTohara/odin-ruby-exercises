@@ -6,7 +6,7 @@ def substrings(str, arr)
       subs[key] += 1 if arr.include?(key)
     end
   end
-  subs
+  subs.sort.to_h # specifically added sort, to match TOP's outcome
 end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
