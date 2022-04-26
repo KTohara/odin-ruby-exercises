@@ -1,5 +1,3 @@
-require 'byebug'
-
 def caesar_cipher(str, shift = 0)
   abc = ("a".."z").to_a
   caesar = ""
@@ -8,8 +6,8 @@ def caesar_cipher(str, shift = 0)
       caesar += char
       next
     end
-    abc_index = (abc.index(char.downcase) + shift) % abc.length
-    char == char.upcase ? caesar += abc[abc_index].upcase : caesar += abc[abc_index]
+    new_index = (abc.index(char.downcase) + shift) % abc.length
+    char == char.upcase ? caesar += abc[new_index].upcase : caesar += abc[new_index]
   end
   caesar
 end
