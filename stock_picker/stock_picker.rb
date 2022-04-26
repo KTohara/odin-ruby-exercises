@@ -16,9 +16,9 @@ def stock_picker(arr)
   end
   sorted = stock_picks.sort_by { |k, v| k }
   best = sorted.last.last
-  puts "Buy on day #{best.first}"
-  puts "Sell on day #{best.last}"
-  puts "Profit will be $#{sorted.last.first}"
+  puts "Buy on day #{best.first} at $#{'%.2f' % arr[best.first]}"
+  puts "Sell on day #{best.last} at $#{'%.2f' % arr[best.last]}" 
+  puts "Profit will be $#{'%.2f' % sorted.last.first}"
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
