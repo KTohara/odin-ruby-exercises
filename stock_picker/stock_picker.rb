@@ -22,4 +22,8 @@ def stock_picker(arr)
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
-# [1,4]  # for a profit of $15 - $3 == $12
+# [1, 4] $12 profit:
+
+# Buy on day 1 at $3.00
+# Sell on day 4 at $15.00
+# Profit will be $12.00
