@@ -3,7 +3,7 @@
 
 # create new hash
 # iterate through substrings of numbers
-# create k v pairs of highest difference as keys, indices of day as values
+# create k v pairs of price difference as keys, indices of day as values
 # sort stock hash by highest number key
 # return highest number key
 
