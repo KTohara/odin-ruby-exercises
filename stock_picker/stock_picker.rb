@@ -11,8 +11,8 @@ def stock_picker(arr)
   stock_picks = Hash.new(0)
   (0...arr.length).each do |i|
     (i...arr.length).each do |j|
-      highest_diff = arr[j] - arr[i]
-      stock_picks[highest_diff] = [i, j]
+      profit = arr[j] - arr[i]
+      stock_picks[profit] = [i, j]
     end
   end
   sorted = stock_picks.sort_by { |k, v| k }
