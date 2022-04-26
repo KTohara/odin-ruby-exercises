@@ -20,6 +20,6 @@ def stock_picker(arr)
   puts "Sell on day #{best.last}"
   puts "Profit will be $#{sorted.last.first}"
 end
-  
+
 stock_picker([17,3,6,9,15,8,6,1,10])
 # [1,4]  # for a profit of $15 - $3 == $12
