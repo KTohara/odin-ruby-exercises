@@ -15,11 +15,12 @@ def stock_picker(arr)
       stock_picks[profit] = [i, j]
     end
   end
-  sorted = stock_picks.sort_by { |k, v| k }
-  best = sorted.last.last
-  puts "Buy on day #{best.first} at $#{'%.2f' % arr[best.first]}"
-  puts "Sell on day #{best.last} at $#{'%.2f' % arr[best.last]}" 
-  puts "Profit will be $#{'%.2f' % sorted.last.first}"
+  sorted_stocks = stock_picks.sort_by { |k, v| k }
+  highest_profit = sorted_stocks.last.last
+  
+  puts "Buy on day #{highest_profit.first} at $#{'%.2f' % arr[highest_profit.first]}"
+  puts "Sell on day #{highest_profit.last} at $#{'%.2f' % arr[highest_profit.last]}" 
+  puts "Profit will be $#{'%.2f' % sorted_stocks.last.first}"
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
