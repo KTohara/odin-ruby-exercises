@@ -1,3 +1,5 @@
+require 'byebug'
+
 def caesar_cipher(str, shift = 0)
   abc = ("a".."z").to_a
   caesar = ""
@@ -6,10 +8,11 @@ def caesar_cipher(str, shift = 0)
       caesar += char
       next
     end
-    abc_index = abc.index(char.downcase)
-    cipher = abc[(abc_index + shift) % abc.length]
-    cipher = cipher.upcase if char == char.upcase
-    caesar += cipher
+    abc_index = (abc.index(char.downcase) + shift) % abc.length
+    char == char.upcase ? caesar += abc[abc_index].upcase : caesar += abc[abc_index]
   end
   caesar
 end
+
+p caesar_cipher("What a string!", 5)
+#  "Bmfy f xywnsl!"
