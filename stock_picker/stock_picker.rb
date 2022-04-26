@@ -2,7 +2,7 @@
 # It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0.
 
 # create new hash
-# iterate through substrings of numbers
+# iterate through input array as substrings of numbers
 # create k v pairs - profit as keys, indices of day as values
 # sort stock hash by highest number key
 # return highest number key
