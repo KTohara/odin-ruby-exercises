@@ -1,4 +1,5 @@
-# Implement a method #stock_picker that takes in an array of stock prices, one for each hypothetical day. It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0.
+# Implement a method #stock_picker that takes in an array of stock prices, one for each hypothetical day. 
+# It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0.
 
 # create new hash
 # iterate through substrings of numbers
@@ -22,7 +23,7 @@ def stock_picker(arr)
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
-# [1, 4] $12 profit:
+# [1, 4] => $12 profit:
 
 # Buy on day 1 at $3.00
 # Sell on day 4 at $15.00
