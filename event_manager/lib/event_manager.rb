@@ -1,12 +1,8 @@
 require 'csv'
+puts 'EventManager initialized.'
 
-puts 'Event Manager Initialized!'
-
-lines = File.readlines('event_attendees.csv')
-lines.each.with_index do |line, i|
-  next if i.zero?
-  col = line.split(',')
-  name = col[2]
+contents = CSV.open('event_attendees.csv', headers: true)
+contents.each do |row|
+  name = row[2]
   puts name
 end
-
