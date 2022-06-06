@@ -1,4 +1,4 @@
-Event Manager project from [Odin Project](https://www.theodinproject.com/lessons/ruby-event-manager)
+Event Manager project from [The Odin Project](https://www.theodinproject.com/lessons/ruby-event-manager)
 
 # Learning Goals #
 After completing this tutorial, you will be able to:
