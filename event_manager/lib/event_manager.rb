@@ -1,5 +1,6 @@
 require 'csv'
 require 'google/apis/civicinfo_v2'
+require 'erb'
 require 'byebug'
 
 def valid_zip(zipcode)
@@ -15,13 +16,16 @@ def legislators_by_zipcode(zip)
       address: zip,
       levels: 'country',
       roles: ['legislatorUpperBody', 'legislatorLowerBody']
-    )
-    legislators = legislators.officials
-    legislator_names = legislators.map(&:name)
-    legislator_names.join(', ')
+    ).officials
   rescue
     'You can find your representatives by visiting www.commoncause.org/take-action/find-elected-officials'
   end
+end
+
+def save_thank_you_letter(id, form_letter)
+  Dir.mkdir('output') unless Dir.exist?('output')
+  file_name = "output/thanks_#{id}.html"
+  File.open(file_name, 'w') { |file| file.puts form_letter }
 end
 
 puts 'EventManager initialized.'
@@ -31,17 +35,16 @@ contents = CSV.open(
   headers: true,
   header_converters: :symbol
 )
-template_letter = File.read('form_letter.html')
+template_letter = File.read('form_letter.erb')
+erb_template = ERB.new(template_letter)
 
 contents.each do |row|
+  id = row[0]
   name = row[:first_name]
   zipcode = valid_zip(row[:zipcode])
   legislators = legislators_by_zipcode(zipcode)
 
-  personal_letter = template_letter.gsub('FIRST_NAME', name)
-  personal_letter.gsub!('LEGISLATORS', legislators)
-
-  puts personal_letter
+  form_letter = erb_template.result(binding)
+  
+  save_thank_you_letter(id, form_letter)
 end
-
-
