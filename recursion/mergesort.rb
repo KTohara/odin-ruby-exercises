@@ -1,9 +1,12 @@
-# PSEUDOCODE:
-# base case: return the array if array has 1 or less items
+# frozen_string_literal: true
+
+# Merge Sort: Sorts the array in order from smallest to largest
+
+# Pseudocode:
+# base case: repeat until the size of the (sub)array is less than 1 (nothing left to search)
 #   declare midpoint of array
 #   recursively call mergesort on left half of array
 #   recursively call mergesort on right half of array
-#   create an empty array for merging back the sorted left and right array
 # merge sorted arrays:
 #   declare empty array for sorted elements (merged)
 #   until either left or right arrays are empty:
@@ -33,23 +36,23 @@ end
 arr = [14, -45, 49, 15, 19, 100.32, 63, 11, 39, 21]
 p merge_sort(arr) # => [-45, 11, 14, 15, 19, 21, 39, 49, 63, 100.32]
 
-# merge sort as a class method that can take a block
+# merge sort as an Array method, with optional block
 class Array
-  def proc_merge_sort(&prc)
+  def my_mergesort(&prc)
     # default block - sorts from smallest to largest
     prc ||= proc { |a, b| a <=> b }
     return self if length <= 1
 
     mid = size / 2
-    left = take(mid).proc_merge_sort(&prc)
-    right = drop(mid).proc_merge_sort(&prc)
+    left = take(mid).my_mergesort(&prc)
+    right = drop(mid).my_mergesort(&prc)
 
-    proc_merge(left, right, &prc)
+    my_merge(left, right, &prc)
   end
 
   private
 
-  def proc_merge(left, right, &prc)
+  def my_merge(left, right, &prc)
     merge = []
 
     until left.empty? || right.empty?
@@ -63,5 +66,5 @@ class Array
   end
 end
 
-p arr.proc_merge_sort # => [-45, 11, 14, 15, 19, 21, 39, 49, 63, 100.32]
-p arr.proc_merge_sort { |a, b| b <=> a } # => [100.32, 63, 49, 39, 21, 19, 15, 14, 11, -45] reverse sort
+p arr.my_mergesort # => [-45, 11, 14, 15, 19, 21, 39, 49, 63, 100.32]
+p arr.my_mergesort { |a, b| b <=> a } # => [100.32, 63, 49, 39, 21, 19, 15, 14, 11, -45] reverse sort

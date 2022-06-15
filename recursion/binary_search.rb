@@ -3,7 +3,7 @@
 # Binary Search - should return the index of target in an array
 
 # Psuedocode:
-# base case: repeat until the (sub)array is size 0:
+# base case: repeat until the (sub)array is size 0
 #   calculate the midpoint of the current (sub)array.
 #   return midpoint if target is midpoint
 #   if target is less then mid, bsearch with array range from start of array to mid
