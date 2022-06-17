@@ -3,12 +3,12 @@
 # Binary Search - should return the index of target in an array
 
 # Psuedocode:
-# base case: repeat until the (sub)array is size 0
+# base case: repeat until the (sub)array is size 0, in which case, return nil
 #   calculate the midpoint of the current (sub)array.
 #   return midpoint if target is midpoint
 #   if target is less then mid, bsearch with array range from start of array to mid
 #   else if target is greater than mid, bsearch with array range from mid + 1 to end of array
-#   memoize recurive call and deal with edge case of target not being array
+#   memoize recurive call and deal with edge case of target not being in array
 
 # NOTE: - array must be sorted for binary search to correctly find the target
 def binary_search(arr, target)
