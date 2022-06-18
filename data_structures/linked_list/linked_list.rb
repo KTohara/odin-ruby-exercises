@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'node'
+require 'byebug'
 
 # Handles nodes within list
 class LinkedList
@@ -48,9 +49,11 @@ class LinkedList
   end
 
   # returns the node at the given index
+  # supports negative indexing
   def at(index)
-    raise 'Index does not exist' if head.nil? || index.negative?
+    return nil if head.nil? || (index + size).negative?
 
+    index += size if index.negative?
     current_node = head
     index.times { current_node = current_node.next_node }
     current_node
@@ -88,6 +91,35 @@ class LinkedList
       index += 1
     end
     nil
+  end
+
+  # inserts a new node with the provided value at the given index.
+  # supports negative indexing
+  def insert_at(index, value)
+    return puts 'Index Error' if index > size || (index + size) < -1
+    return prepend(value) if index.zero? || (index + size) == -1
+
+    index = index >= 1 ? index - 1 : index
+
+    insertion_node = at(index)
+    child_node = insertion_node.next_node
+    insertion_node.next_node = Node.new(value, child_node)
+  end
+
+  # removes the node at the given index.
+  def remove_at(index)
+    return puts 'Index Error' if at(index).nil?
+
+    case at(index)
+    when head
+      @head = at(1)
+    when tail
+      @tail = at(index - 1)
+      @tail.next_node = nil
+    else
+      prev_node = at(index - 1)
+      prev_node.next_node = at(index + 1)
+    end
   end
 
   def to_s
