@@ -3,30 +3,30 @@
 require_relative 'node'
 require_relative 'linked_list'
 
-li = LinkedList.new
-li.append(1)
-li.prepend(0.5)
-li.append(2)
-li.prepend(42)
-li.append(3)
+my_list = LinkedList.new
+my_list.append(1)
+my_list.prepend(0.5)
+my_list.append(2)
+my_list.prepend(42)
+my_list.append(3)
 
-puts li
-p li.size
-puts li.at(0)
-puts li.at(-5)
-puts li.at(-1)
-puts li.at(4)
-p li.at(5)
-p li.at(-6)
-li.pop
-puts li
-p li.contains?(2)
-p li.find_index(2)
-p li.size
-puts li.at(3)
-li.insert_at(-3, 500)
-li.insert_at(-7, 123)
-li.insert_at(-6, 123)
-puts li
-puts li.remove_at(-6)
-puts li
+puts my_list
+p my_list.size
+puts my_list.at(0)
+puts my_list.at(-5)
+puts my_list.at(-1)
+puts my_list.at(4)
+p my_list.at(5)
+p my_list.at(-6)
+my_list.pop
+puts my_list
+p my_list.contains?(2)
+p my_list.find_index(2)
+p my_list.size
+puts my_list.at(3)
+my_list.insert_at(-3, 500)
+my_list.insert_at(-7, 123)
+my_list.insert_at(-6, 123)
+puts my_list
+puts my_list.remove_at(-1)
+puts my_list

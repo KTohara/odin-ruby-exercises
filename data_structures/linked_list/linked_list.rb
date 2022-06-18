@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'node'
-require 'byebug'
 
 # Handles nodes within list
 class LinkedList
@@ -114,8 +113,7 @@ class LinkedList
     when head
       @head = at(1)
     when tail
-      @tail = at(index - 1)
-      @tail.next_node = nil
+      pop
     else
       prev_node = at(index - 1)
       prev_node.next_node = at(index + 1)
