@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require 'byebug'
 
+# Creates a binary tree for nodes to reside in, and handles node traversal
 class Tree
   attr_reader :root
 
@@ -26,7 +26,7 @@ class Tree
   def insert(value, node = @root)
     # return nil if value == node.data
     return Node.new(value) if node.nil?
-    
+
     if value < node.data
       node.left = insert(value, node.left)
     else
@@ -59,13 +59,15 @@ class Tree
   # returns leaf node with the minimal value of the input node
   def find_min(node = @root)
     return if node.nil?
-    return node.left.nil? ? node : find_min(node.left)
+
+    node.left.nil? ? node : find_min(node.left)
   end
-  
+
   # returns leaf node with the maximal value of the input node
   def find_max(node = @root)
     return if node.nil?
-    return node.right.nil? ? node : find_max(node.right)
+
+    node.right.nil? ? node : find_max(node.right)
   end
 
   # returns the node with the corresponding value
@@ -77,36 +79,86 @@ class Tree
     value < node.data ? find(value, node.left) : find(value, node.right)
   end
 
+  # breadth first search (BFS) traversal:
+  # level by level until the queue is empty, dequeue element, starting with root node
+  # enqueue any existing left and right child nodes (unless nil/leaf node)
+  # push the nodes into the output
+  # return output after loop
   def level_order(&prc)
-
+    q = [@root]
+    output = []
+    until q.empty?
+      current_node = q.shift
+      q << current_node.left unless current_node.left.nil?
+      q << current_node.right unless current_node.right.nil?
+      prc.call(current_node) if block_given?
+      output << current_node.data
+    end
+    output
   end
 
-  def inorder(&prc)
+  # left, root, right traversal
+  def inorder(node = @root, output = [], &prc)
+    return output if node.nil?
 
+    inorder(node.left, output, &prc)
+    prc.call(node) if block_given?
+    output << node.data
+    inorder(node.right, output, &prc)
+    output
   end
 
-  def preorder(&prc)
+  # root, left, right traversal
+  def preorder(node = @root, output = [], &prc)
+    return output if node.nil?
 
+    prc.call(node) if block_given?
+    output << node.data
+    preorder(node.left, output, &prc)
+    preorder(node.right, output, &prc)
+    output
   end
 
-  def postorder(&prc)
+  # left, right, root traversal
+  def postorder(node = @root, output = [], &prc)
+    return output if node.nil?
 
+    postorder(node.left, output, &prc)
+    postorder(node.right, output, &prc)
+    prc.call(node) if block_given?
+    output << node.data
+    output
   end
 
-  def height(node)
+  # maximum depth, root node will be level 0
+  def height(node = @root)
+    return -1 if node.nil?
 
+    left_height = height(node.left)
+    right_height = height(node.right)
+    1 + [left_height, right_height].max
   end
 
-  def depth(node)
-
+  # depth from specific node to root, root node will be level 0
+  def depth(node = @root)
+    max_height = height(root)
+    max_height - height(node)
   end
 
-  def balanced?
+  # checks for tree balance
+  # difference between height of left sub-tree and right sub-tree must be no more than 1
+  def balanced?(node = @root)
+    return true if node.nil?
 
+    left = height(node.left)
+    right = height(node.right)
+    (left - right).abs <= 1
   end
 
+  # re-balances a tree by taking a traversal method, and calling #build_tree
   def rebalance
-
+    data = inorder
+    @root = build_tree(data)
   end
 
   # display binary tree, shared by TOP student

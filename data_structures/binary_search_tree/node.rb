@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+# Single node/element within a binary search tree
 class Node
-  # include Comparable
   attr_accessor :data, :left, :right
 
   def initialize(data = nil, left = nil, right = nil)
@@ -9,11 +9,6 @@ class Node
     @left = left
     @right = right
   end
-
-  # def <=>(other)
-  #   value = other.instance_of?(Node) ? other.data : other
-  #   value <=> data
-  # end
 
   def to_s
     "Data: #{data} Left: #{left.nil? ? 'nil' : left.data} Right: #{right.nil? ? 'nil' : right.data}"
