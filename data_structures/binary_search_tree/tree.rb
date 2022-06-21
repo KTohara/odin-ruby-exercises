@@ -9,8 +9,8 @@ class Tree
     @root = build_tree(data)
   end
 
-  # takes an array into a balanced binary tree full of node instances appropriately placed.
-  # should return the level-0 root node.
+  # takes an array into a balanced binary tree full of node instances appropriately placed
+  # should return the level-0 root node
   def build_tree(array)
     return nil if array.empty?
 
@@ -22,9 +22,7 @@ class Tree
   end
 
   # inserts a node into the correct position
-  # returns nil if value exists
   def insert(value, node = @root)
-    # return nil if value == node.data
     return Node.new(value) if node.nil?
 
     if value < node.data
@@ -97,7 +95,7 @@ class Tree
     output
   end
 
-  # left, root, right traversal
+  # left, root, right depth first search (DFS) traversal
   def inorder(node = @root, output = [], &prc)
     return output if node.nil?
 
@@ -108,7 +106,7 @@ class Tree
     output
   end
 
-  # root, left, right traversal
+  # root, left, right DFS traversal
   def preorder(node = @root, output = [], &prc)
     return output if node.nil?
 
@@ -119,7 +117,7 @@ class Tree
     output
   end
 
-  # left, right, root traversal
+  # left, right, root DFS traversal
   def postorder(node = @root, output = [], &prc)
     return output if node.nil?
 
@@ -139,10 +137,10 @@ class Tree
     1 + [left_height, right_height].max
   end
 
-  # depth from specific node to root, root node will be level 0
+  # depth from root node to specific node, root will be level 0
   def depth(node = @root)
-    max_height = height(root)
-    max_height - height(node)
+    root_height = height(root)
+    root_height - height(node)
   end
 
   # checks for tree balance
@@ -161,7 +159,7 @@ class Tree
     @root = build_tree(data)
   end
 
-  # display binary tree, shared by TOP student
+  # display binary tree, shared by a TOP student
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
